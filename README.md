@@ -15,7 +15,9 @@
 ###Step to execute the weather application
 
 #Step 1: Download  the application from the url "https://github.com/kltram/weather-app-in-nodejs.git"
+
 >git clone https://github.com/kltram/weather-app-in-nodejs.git
+
 ##Step 2: Open the application into the command prompt like "C:\Users\<username>\Desktop\weather-app-in-nodejs>"
 
 ##Step 3: Execute the command - C:\Users\<username>\Desktop\weather-app-in-nodejs>
