@@ -1,3 +1,15 @@
+const config = {
+	app: {
+		appid : 'appid=b6907d289e10d714a6e88b30761fae22',
+		url : 'https://samples.openweathermap.org/data/2.5/weather1?q='
+	},
+ 	db: {
+ 		dbname: 'weatherreports',
+		host: '127.0.0.1',
+		port: 27017,
+		schema: 'weather'
+ 	},
+ 	secrate:'Honngkong'
+};
 
-let appid = 'appid=3598a8acc5cc2ea4cc6731602261505e';
-let url = 'http://api.openweathermap.org/data/2.5/weather?q=London&'+appid;
+module.exports = config;

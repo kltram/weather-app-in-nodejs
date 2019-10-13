@@ -1,12 +1,12 @@
+'use strict';
 var express = require('express');
-var router = express.Router();
-
-
-let url    = 'http://api.openweathermap.org/data/2.5/weather?q='
-let appId  = 'appid=YOUR API KEY';
-let units  = '&units=metric'; 
 var request = require('request');
 
+var router = express.Router();
+
+var Weather = require('../model/WeatherModel.js');
+var Config = require('../public/config/config.js');
+const mongooseDB = require('../db/dbconnect.js').db;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -15,21 +15,49 @@ router.get('/', function(req, res, next) {
 
 router.post('/weather', function(req, res, next){
   let city = req.body.city;
-  url = url+city+"&"+appId;
+  let urlWeather = Config.app.url+city+"&"+Config.app.appid;
 
- request(url, function (error, response, body) {
-      console.log('error:', error); // Print the error if one occurred
-      console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-      body = JSON.parse(body);
-      console.log( body);
-      if(error && response.statusCode != 200){
-        throw error;
+ request(urlWeather, function (error, response, body) {
+
+       let forecast = "For city "+city+', country '+city;
+      // Print the response status code if a response was received
+      if(error || response.statusCode != 200){
+        var Comment=  Weather.find({'location':city},function (err, weather) {
+              if (err) console.log('err----',err);
+               let data=[{
+                  longitude:weather.longitude,
+                  pressure: weather.pressure,
+                  temperature: weather.temperature,
+                  humidty: weather.humidty,
+                  speed: weather.speed
+                }];
+              console.log(weather);
+              res.render('index', {parsedJSON : weather, forecast: forecast});
+              }).limit(1);// end Team.find 
+            } else{
+                var weatherReports =new Weather({
+                location: city,
+                weather: JSON.parse(body).weather[0].main,
+                longitude: JSON.parse(body).coord.lon,
+                pressure: JSON.parse(body).main.pressure,
+                temperature: JSON.parse(body).main.temp,
+                humidty: JSON.parse(body).main.humidity,
+                speed: JSON.parse(body).wind.speed
+            });
+                var result = weatherReports.save(); 
+                let weather=[{
+                        longitude:JSON.parse(body).coord.lon,
+                        pressure: JSON.parse(body).main.pressure,
+                        temperature: JSON.parse(body).main.temp,
+                        humidty: JSON.parse(body).main.humidity,
+                        speed: JSON.parse(body).wind.speed
+                }];
+                console.log(weather);
+                res.render('index', {parsedJSON : weather, forecast: forecast});
       }
 
-    let country = (body.sys.country) ? body.sys.country : '' ;
-    let forecast = "For city "+city+', country '+country;
-
-    res.render('index', {body : body, forecast: forecast});
    });
 });
+
 module.exports = router;
+

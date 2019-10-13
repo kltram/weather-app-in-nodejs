@@ -18,7 +18,7 @@ block content
           
         hr
       .row
-        .col-md-12
+        .col-md-14
           p
            br
            br
@@ -27,25 +27,24 @@ block content
             thead
               tr
                 th Longitude / Latitude
-                
                 th Pressure
                 th Temprature
                 th Humidty
                 th Speed
             tbody
-               if body
+               if parsedJSON
                 tr
                   td
-                    #{body.coord.lon} / #{body.coord.lon}
-                  td 
-                    #{body.main.pressure}
+                    #{parsedJSON[0].longitude}
                   td
-                    #{body.main.temp}
+                    #{parsedJSON[0].pressure}
                   td
-                    #{body.main.humidity}
+                    #{parsedJSON[0].temperature}
                   td
-                    #{body.wind.speed}
+                    #{parsedJSON[0].humidty}
+                  td
+                    #{parsedJSON[0].speed}
                else
                 tr
-                    td(colspan="6")
+                    td(colspan="8")
                       | Enter city name and click Fetch Weather button
