@@ -14,17 +14,24 @@
 
 ###Step to execute the weather application
 
-#Step 1: Download  the application from the url ""
+#Step 1: Download  the application from the url "https://github.com/kltram/weather-app-in-nodejs.git"
+>git clone https://github.com/kltram/weather-app-in-nodejs.git
 ##Step 2: Open the application into the command prompt like "C:\Users\<username>\Desktop\weather-app-in-nodejs>"
 
-##Step 3: Execute the command - C:\Users\<username>\Desktop\weather-app-in-nodejs>npm install
+##Step 3: Execute the command - C:\Users\<username>\Desktop\weather-app-in-nodejs>
 
-##Step 4: Before start the application, First start the mongo db- C:\Program Files\MongoDB\Server\3.4\bin>mongod.exe
+npm install
 
-##Step 5: Open the mongo terminal , C:\Program Files\MongoDB\Server\3.4\bin>mongo.exe
+##Step 4: Before start the application, First start the mongo db- C:\Program Files\MongoDB\Server\3.4\bin>
 
+mongod.exe
 
-##Step 6: Start the application, C:\Users\<username>\Desktop\weather-app-in-nodejs>npm start
+##Step 5: Open the mongo terminal , C:\Program Files\MongoDB\Server\3.4\bin>
+
+mongo.exe
+
+##Step 6: Start the application, C:\Users\<username>\Desktop\weather-app-in-nodejs>
+npm start
 
 ##Step 7: Go to browser and type the url "http://localhost:3000"
 
