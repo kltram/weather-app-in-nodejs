@@ -1,9 +1,7 @@
 # weather-app-in-nodejs
 
 
-###Source code for article on NodeJS PassportJS login with MySQL.
-
-###Following articles are performed in thsi tutorial.
+##Following articles are performed in thsi tutorial.
 
   1. Register on Open Weather Map website.
 
